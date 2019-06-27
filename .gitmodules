@@ -1,0 +1,8 @@
+
+[submodule "nomo"]
+	path = nomopath
+	url = nomourl
+
+[submodule "samplemodule"]
+	path = samplemodule
+	url = https://github.com/JhonnyJason/samplemodule.git
