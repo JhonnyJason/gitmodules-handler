@@ -1,5 +1,5 @@
 # gitmodules-file-handler
-Module to help read and write to .gitmodules file
+Module to help read and write to .gitmodules file.
 
 This module takes a path to a .gitmodules file, then it provides the abilities to remove, add and alter the submodule sections therein.
 
@@ -7,7 +7,7 @@ Usage
 ---
 
 ```javascript
-const gitmodulesHandler = require("gitmodules-handler")
+const gitmodulesHandler = require("gitmodules-file-handler")
 
 const gitmodulesPath = "/your/path/to/.gitmodules/"
 
@@ -43,7 +43,7 @@ class GitmodulesObject {
 
 }
 ```
-Both the `createModule` function and the `getModule` function will most likely return a `GitmoduleInfoObject` this object is used to handle the entries for a specific submodule. 
+Both the `createModule` function and the `getModule` function will most likely return a `GitmoduleInfoObject`. This object is used to handle the entries for a specific submodule. 
 
 ```javascript
 class GitmoduleInfoObject {
@@ -64,13 +64,13 @@ class GitmoduleInfoObject {
 Results
 ---
 
-When writing the file each submodule will like like
+When writing the file each submodule will look like
 ```.gitmodules
 [submodule "submoduleName"]
 	path = submodulePath
 	url = submoduleURL
 ```
-I have noticed that when using git to add a submodule then usually the `submoduleName` = `submodulePath` even if the path is more complex.
+I have noticed that when using git to add a submodule then usually the `submoduleName` = `submodulePath`.
 
 ---
 

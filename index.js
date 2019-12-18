@@ -106,7 +106,7 @@ class GitmoduleInfoObject {
     }
 
     getPrintString() {
-        var printString = "\n[submodule \"" + this.name + "\"]\n"
+        var printString = "[submodule \"" + this.name + "\"]\n"
         printString += "\tpath = " + this.path + "\n"
         printString += "\turl = " + this.url + "\n"
         return printString

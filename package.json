@@ -1,6 +1,6 @@
 {
   "name": "gitmodules-file-handler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Module to help read and write to .gitmodules file",
   "main": "index.js",
   "scripts": {
