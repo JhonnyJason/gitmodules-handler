@@ -1,19 +1,20 @@
 const fs = require("fs").promises
-const c = require("chalk")
 
+const log = (arg) => {
+    if(global.testing)
+        console.log(arg)
+}
 
 
 const parseModules = (string) => {
-
-    console.log(c.yellow("TODO: parse the given String: " + string))
 
     var modules = {}
     
     var stringLines = string.split("\n")
     
-    console.log(c.red(" - - "))
-    stringLines.forEach(line => console.log(line))
-    console.log(c.red(" - - "))
+    log(" - - ")
+    stringLines.forEach(line => log(line))
+    log(" - - ")
 
 
     var newModule = {}
@@ -27,15 +28,15 @@ const parseModules = (string) => {
             if(line.indexOf("[submodule \"") == 0) {
                 var tokens = line.split("\"")
                 newModule.name = tokens[1]
-                console.log(c.yellow("extracted submodule name: " + newModule.name))
+                log("extracted submodule name: " + newModule.name)
             }
             if(line.indexOf("\tpath = ") == 0) {
                 newModule.path = line.substr(8)
-                console.log(c.yellow("extracted submodule path: " + newModule.path))
+                log("extracted submodule path: " + newModule.path)
             }
             if(line.indexOf("\turl = ") == 0) {
                 newModule.url = line.substr(7)
-                console.log(c.yellow("extracted submodule url: " + newModule.url))
+                log("extracted submodule url: " + newModule.url)
             }
             if(newModule.name && newModule.path && newModule.url) {
                 new GitmoduleInfoObject(modules, newModule.name, newModule.url, newModule.path)
@@ -113,8 +114,6 @@ class GitmoduleInfoObject {
 
 }
 
-
-
 //=========================================================================
 // this Object is the key Object of being exposed
 //=========================================================================
@@ -124,7 +123,7 @@ class GitmodulesObject {
         this.path = path
         this.modules = parseModules(fileString)
         
-        console.log(c.yellow(" -> created GitmodulesObject!"))
+        log(" -> created GitmodulesObject!")
 
     }
 
@@ -156,7 +155,6 @@ class GitmodulesObject {
 
 }
 
-
 module.exports = {
 
     readNewGitmodulesFile: async (path) => {
@@ -165,8 +163,8 @@ module.exports = {
         try {
             fileString = await fs.readFile(path, "utf-8")
             
-            console.log(c.green("File did exist - we read the file!"))
-            console.log(fileString)
+            log("File did exist - we read the file!")
+            log(fileString)
 
             return new GitmodulesObject(fileString, path)
         
@@ -175,7 +173,7 @@ module.exports = {
                 try {
                     var fileHandle = await fs.open(path, 'w+')
         
-                    console.log(c.green("File not exist - created new file!"))
+                    log("File not exist - created new file!")
         
                     await  fs.close(fileHandle)
         
@@ -183,11 +181,11 @@ module.exports = {
                     return new GitmodulesObject(fileString, path)
         
                 } catch(err2) {
-                    console.log(c.red("Error, could not open file: " + path))
+                    log("Error, could not open file: " + path)
                     throw err2                        
                 }
             } else {
-                console.log(c.red("Error, could not open file: " + path))
+                log("Error, could not open file: " + path)
                 throw err                
             }
         }

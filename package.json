@@ -1,6 +1,6 @@
 {
-  "name": "gitmodules-handler",
-  "version": "0.0.1",
+  "name": "gitmodules-file-handler",
+  "version": "0.1.0",
   "description": "Module to help read and write to .gitmodules file",
   "main": "index.js",
   "scripts": {
@@ -12,10 +12,11 @@
   },
   "keywords": [
     "gitmodules",
+    ".gitmodules",
+    "file",
     "helper",
     "read",
-    "write",
-    ".gitmodules"
+    "write"
   ],
   "author": "Lenard Frommelt",
   "license": "Unlicense",
@@ -23,7 +24,5 @@
     "url": "https://github.com/JhonnyJason/gitmodules-handler/issues"
   },
   "homepage": "https://github.com/JhonnyJason/gitmodules-handler#readme",
-  "dependencies": {
-    "chalk": "^2.4.2"
-  }
+  "dependencies": {}
 }

@@ -1,5 +1,6 @@
 const gitmodulesHandler = require("./index")
-const c = require("chalk")
+
+global.testing = true
 
 const testPath = ".gitmodules"
 
@@ -23,26 +24,30 @@ const runTests = async () => {
         
         var otherModule = testObject1.getModule("nomo")
         if(otherModule) {
-            console.log(c.yellow(otherModule.getPrintString()))
+            console.log(otherModule.getPrintString())
+            otherModule.remove()
+            console.log("nomo module should've been removed")
         } else {
-            console.log(c.red("module named nomo did not exist..."))
+            console.log("module named nomo did not exist...")
+            testObject1.createModule("nomo", "nomourl", "nomopath")
+            console.log("nomo module should've been created!")
         }
 
 
         otherModule = testObject1.getModule(sampleName1)
         if(otherModule) {
-            console.log(c.yellow(otherModule.getPrintString()))
+            console.log(otherModule.getPrintString())
         } else {
-            console.log(c.red("module named " + sampleName1 + " did not exist..."))
+            console.log("module named " + sampleName1 + " did not exist...")
         }
 
         await testObject1.writeToFile()
 
 
 
-        console.log(c.green("Test run through smoothly!"))
+        console.log("Test run through smoothly!")
     } catch(err) {
-        console.log(c.red("Error!"))
+        console.log("Error!")
         console.log(err)
     }
 } 
